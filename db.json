@@ -10,13 +10,13 @@
       "id": 2,
       "text": "Meeting at School",
       "day": "Feb 6th at 1:30pm",
-      "reminder": false
+      "reminder": true
     },
     {
-      "text": "Homework",
-      "day": "Feb 7th at 1:00pm",
+      "text": "Grocery Shopping",
+      "day": "Feb 8th at 12:00 pm",
       "reminder": true,
-      "id": 3
+      "id": 4
     }
   ]
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import Tasks from './components/Tasks'
 import AddTask from './components/AddTask'
+import Footer from './components/Footer'
 
 function App() {
   const [showAddTask, setShowAddTask] = useState(false)
@@ -53,7 +54,7 @@ function App() {
 
   const toggleReminder = async (id) => {
     const taskToToggle = await fetchTask(id)
-    const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder}
+    const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder }
 
     const res = await fetch(`http://localhost:5000/tasks/${id}`, {
       method: 'PUT',
@@ -65,14 +66,15 @@ function App() {
 
     const data = await res.json()
 
-    setTasks(tasks.map((task) => task.id === id ? { ...task, reminder:data.reminder } : task))
+    setTasks(tasks.map((task) => task.id === id ? { ...task, reminder: data.reminder } : task))
   }
 
   return (
-    <div className="App">
+    <div className="App container">
       <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask} />
       {showAddTask && <AddTask onAdd={addTask} />}
       {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />) : ("No Tasks to Show")}
+      <Footer />
     </div>
   );
 }
